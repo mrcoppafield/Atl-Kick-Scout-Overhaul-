@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATL-KICK-SCOUT - Rate Your Atlanta Kicks 1-10</title>
+    <title>ATL-KICK-SCOUT - Your Atlanta Style Concierge</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R6EGQPLGVL"></script>
     <script>
@@ -482,6 +482,41 @@
             text-decoration: underline;
         }
 
+        .loading-section {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .style-breakdown {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .style-breakdown h4 {
+            color: #1e3a5f;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+
         @media (max-width: 768px) {
             .logo {
                 font-size: 2.2em;
@@ -505,57 +540,63 @@
         <div id="homeView">
             <header>
                 <div class="logo">ATL-KICK-SCOUT</div>
-                <div class="tagline">Your Personal Atlanta Style & Lifestyle Guide</div>
-                <div class="sub-tagline">Discover the 404's hidden gems - from fresh kicks to top cuts 🍑</div>
+                <div class="tagline">Your Atlanta Style Concierge</div>
+                <div class="sub-tagline">Rate your look, discover hidden gems, and elevate your ATL style 👑</div>
             </header>
 
             <div class="premium-banner" onclick="unlockPremium()">
-                <h3>🔓 Unlock Premium - $4.99/mo</h3>
-                <p>Get exclusive access to hidden shops, barber insider tips, restaurant guides & personalized style coaching</p>
+                <h3>🚀 Upgrade to Concierge Premium - $4.99/mo</h3>
+                <p>Get personalized style coaching, exclusive Atlanta guides, and priority access to hidden gems</p>
             </div>
 
             <div class="categories">
                 <div class="category-card" onclick="openCategory('kicks')">
                     <div class="category-icon">👟</div>
-                    <h2>Kicks</h2>
-                    <p>Rate and discover the freshest sneakers across Atlanta's zones. From Bankhead to Buckhead.</p>
+                    <h2>Rate My Kicks</h2>
+                    <p>Get instant 1-10 ratings on your sneakers from Atlanta's style community</p>
                 </div>
 
-                <div class="category-card" onclick="openCategory('premium')">
+                <div class="category-card" onclick="openCategory('styleRating')">
+                    <div class="category-icon">🔄</div>
+                    <h2>Full Fit Rating</h2>
+                    <p>Upload your complete outfit and get comprehensive style analysis</p>
+                </div>
+
+                <div class="category-card" onclick="openCategory('concierge')">
                     <div class="category-icon">💎</div>
-                    <h2>Hidden Gems<span class="premium-badge">PREMIUM</span></h2>
-                    <p>Exclusive access to Atlanta's best sneaker shops, thrift stores, barbers, and style tips.</p>
+                    <h2>Style Concierge<span class="premium-badge">PREMIUM</span></h2>
+                    <p>Personalized shopping guides, barber recommendations, and hidden gem access</p>
                 </div>
 
-                <div class="category-card" onclick="alert('Coming soon! Unlock Premium for early access.')">
-                    <div class="category-icon">👔</div>
-                    <h2>Fits<span class="premium-badge">COMING SOON</span></h2>
-                    <p>Share your complete outfit. Get style ratings and personalized fashion feedback.</p>
+                <div class="category-card" onclick="openCategory('discover')">
+                    <div class="category-icon">🗺️</div>
+                    <h2>Discover ATL</h2>
+                    <p>Curated maps of Atlanta's best shops, barbers, and sneaker spots</p>
                 </div>
 
-                <div class="category-card" onclick="alert('Coming soon! Unlock Premium for early access.')">
-                    <div class="category-icon">✂️</div>
-                    <h2>Cuts<span class="premium-badge">COMING SOON</span></h2>
-                    <p>Find Atlanta's best barbers with real community reviews and insider tips.</p>
+                <div class="category-card" onclick="openCategory('community')">
+                    <div class="category-icon">👥</div>
+                    <h2>Style Community</h2>
+                    <p>Connect with Atlanta's fashion community and share your looks</p>
                 </div>
 
-                <div class="category-card" onclick="alert('Coming soon! Unlock Premium for early access.')">
-                    <div class="category-icon">🍽️</div>
-                    <h2>Eats<span class="premium-badge">COMING SOON</span></h2>
-                    <p>Must-try restaurants, food trucks, and hidden culinary gems across the 404.</p>
-                </div>
-
-                <div class="category-card" onclick="alert('Coming soon! Unlock Premium for early access.')">
-                    <div class="category-icon">🛍️</div>
-                    <h2>Spots<span class="premium-badge">COMING SOON</span></h2>
-                    <p>Hidden boutiques, thrift stores, and shopping destinations only locals know.</p>
+                <div class="category-card" onclick="openCategory('coaching')">
+                    <div class="category-icon">🎯</div>
+                    <h2>1-on-1 Coaching<span class="premium-badge">PREMIUM</span></h2>
+                    <p>Personal style sessions with Atlanta's top fashion experts</p>
                 </div>
             </div>
 
             <div class="cta-section">
-                <h2>Ready to Scout the 404?</h2>
-                <p>Join Scout404 Premium for full access to Atlanta's best-kept style and lifestyle secrets</p>
-                <button class="cta-btn" onclick="unlockPremium()">Unlock Premium - $4.99/mo</button>
+                <h2>Ready to Master Atlanta Style?</h2>
+                <p>Join thousands of Atlantans who've elevated their look with our concierge service</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    <button class="cta-btn" onclick="unlockPremium()">Get Premium - $4.99/mo</button>
+                    <button class="cta-btn" style="background: #1e3a5f; color: white;" 
+                            onclick="openCategory('concierge')">Explore Concierge</button>
+                    <button class="cta-btn" style="background: #2d5016; color: white;"
+                            onclick="openCategory('styleRating')">Rate Your Style</button>
+                </div>
             </div>
 
             <footer>
@@ -612,24 +653,587 @@
             </div>
 
             <div class="gallery-section">
-                <h2>Community Gallery</h2>
-                <p style="text-align: center; color: #666; margin-bottom: 20px;">See what Atlanta is wearing</p>
+                <h2>ATL Style Gallery</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 20px;">See how Atlanta is styling</p>
                 
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="https://via.placeholder.com/250x200/1e3a5f/d4af37?text=Sample+Kicks" alt="Sample Kicks">
+                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=250&h=200&fit=crop" alt="Streetwear Style">
                         <div class="gallery-item-info">
-                            <span class="gallery-item-zone">Zone 1</span>
-                            <span class="gallery-item-rating">8/10</span>
-                            <p style="margin-top: 10px; color: #666; font-size: 0.9em;">Coming soon: Submit your kicks via Google Form</p>
+                            <span class="gallery-item-zone">Little 5 Points</span>
+                            <span class="gallery-item-rating">9.2/10</span>
+                            <p style="margin-top: 10px; color: #666; font-size: 0.9em;">🔥 Streetwear perfection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1485231183945-fffde7cb32f1?w=250&h=200&fit=crop" alt="Business Casual">
+                        <div class="gallery-item-info">
+                            <span class="gallery-item-zone">Buckhead</span>
+                            <span class="gallery-item-rating">8.7/10</span>
+                            <p style="margin-top: 10px; color: #666; font-size: 0.9em;">💼 Elevated business casual</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STYLE RATING VIEW -->
+        <div id="styleRatingView" class="category-detail">
+            <header>
+                <div class="logo">ATL-KICK-SCOUT</div>
+                <div class="tagline">👔 Rate Your Complete Fit</div>
+            </header>
+
+            <div class="upload-section">
+                <h2>Upload Your Full Outfit</h2>
+                
+                <div class="upload-area" id="styleUploadArea" onclick="document.getElementById('styleFileInput').click()">
+                    <div class="upload-icon">📸</div>
+                    <h3>Show us your complete look</h3>
+                    <p style="color: #666; margin-top: 10px;">Full outfit photos get the best style analysis</p>
+                </div>
+                
+                <input type="file" id="styleFileInput" accept="image/*" style="display: none;">
+                
+                <img id="styleImagePreview" class="image-preview" alt="Style Preview">
+
+                <div class="input-group">
+                    <label>Style Category</label>
+                    <select id="styleCategory">
+                        <option value="">What's your vibe?</option>
+                        <option value="streetwear">Streetwear 🔥</option>
+                        <option value="casual">Casual Everyday</option>
+                        <option value="business">Business Casual</option>
+                        <option value="nightlife">Night Out</option>
+                        <option value="creative">Creative/Artsy</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Neighborhood Vibe</label>
+                    <select id="styleNeighborhood">
+                        <option value="">Where are you styling?</option>
+                        <option value="bankhead">Bankhead - Urban</option>
+                        <option value="midtown">Midtown - Trendy</option>
+                        <option value="buckhead">Buckhead - Upscale</option>
+                        <option value="eav">East Atlanta - Alternative</option>
+                        <option value="little5">Little 5 Points - Eclectic</option>
+                    </select>
+                </div>
+
+                <button class="submit-btn" id="styleSubmitBtn" disabled onclick="rateStyle()">Analyze My Style! 🔍</button>
+            </div>
+
+            <div class="result-section" id="styleResultSection">
+                <div class="rating-display" id="styleRatingDisplay"></div>
+                <div class="feedback-text" id="styleFeedbackText"></div>
+                <div class="style-breakdown">
+                    <h4>Style Breakdown:</h4>
+                    <div id="breakdownDetails"></div>
+                </div>
+                <a href="#" class="share-btn" onclick="shareStyleToIG(event)">Share to Instagram</a>
+                <button class="submit-btn" style="margin-top: 20px;" onclick="resetStyleForm()">Rate Another Fit</button>
+            </div>
+        </div>
+
+        <!-- CONCIERGE VIEW -->
+        <div id="conciergeView" class="category-detail">
+            <header>
+                <div class="logo">ATL-KICK-SCOUT</div>
+                <div class="tagline">💎 Your Personal Style Concierge</div>
+            </header>
+
+            <div class="premium-content" id="conciergeContent">
+                <h2>Welcome to Your Atlanta Style Concierge</h2>
+                
+                <div class="gem-category">
+                    <h3>🛍️ Personal Shopping Guide</h3>
+                    <p>Get customized shopping routes based on your style preferences and budget</p>
+                    <p><strong>Premium Feature:</strong> Access to secret sample sales and exclusive boutiques</p>
+                </div>
+
+                <div class="gem-category">
+                    <h3>✂️ Barber & Grooming Network</h3>
+                    <p>Connect with Atlanta's top barbers who specialize in your desired look</p>
+                    <p><strong>Insider Tip:</strong> Book appointments at exclusive spots like The Shave Barbershop</p>
+                </div>
+
+                <div class="gem-category">
+                    <h3>🍽️ Style & Dining Experiences</h3>
+                    <p>Perfect outfit recommendations for Atlanta's hottest restaurants and bars</p>
+                    <p><strong>Local Secret:</strong> Staplehouse requires smart casual, but with ATL flair</p>
+                </div>
+
+                <div class="cta-section">
+                    <h3>Ready for Your Personal Style Journey?</h3>
+                    <button class="cta-btn" onclick="startConciergeBooking()">Book Concierge Session</button>
+                </div>
+            </div>
+
+            <div class="cta-section" id="conciergeUpsell">
+                <h2>Unlock Your Atlanta Style Potential</h2>
+                <p>Get personalized recommendations, exclusive access, and 1-on-1 style coaching</p>
+                <button class="cta-btn" onclick="unlockPremium()">Upgrade to Premium - $4.99/mo</button>
+            </div>
+        </div>
+
+        <!-- DISCOVER ATL VIEW -->
+        <div id="discoverView" class="category-detail">
+            <header>
+                <div class="logo">ATL-KICK-SCOUT</div>
+                <div class="tagline">🗺️ Discover Atlanta's Hidden Gems</div>
+            </header>
+
+            <div class="premium-content">
+                <h2>Atlanta Style Destinations</h2>
+                
+                <div class="gem-category">
+                    <h3>👟 Sneaker Spots</h3>
+                    <p><strong>Wish ATL:</strong> Buckhead's premium sneaker destination</p>
+                    <p><strong>Premium Kicks:</strong> Underground spot in Little 5 Points</p>
+                    <p><strong>Local Secret:</strong> A Ma Maniére - exclusive Jordan collabs</p>
+                </div>
+
+                <div class="gem-category">
+                    <h3>🧥 Thrift & Vintage</h3>
+                    <p><strong>Buffalo Exchange:</strong> Trendy secondhand in Little 5 Points</p>
+                    <p><strong>Rag-O-Rama:</strong> Atlanta vintage institution</p>
+                    <p><strong>Hidden Gem:</strong> The Clothing Warehouse - unique finds</p>
+                </div>
+
+                <div class="gem-category">
+                    <h3>✂️ Top Barbers</h3>
+                    <p><strong>American Haircuts:</strong> Multiple locations, consistent quality</p>
+                    <p><strong>The Shave Barbershop:</strong> Premium experience in Buckhead</p>
+                    <p><strong>Local Favorite:</strong> Freedom Barber Co. - creative styles</p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Want the Full Atlanta Experience?</h2>
+                <p>Unlock premium to get personalized recommendations and exclusive access</p>
+                <button class="cta-btn" onclick="unlockPremium()">Unlock Premium Access</button>
+            </div>
+        </div>
+
+        <!-- COMMUNITY VIEW -->
+        <div id="communityView" class="category-detail">
+            <header>
+                <div class="logo">ATL-KICK-SCOUT</div>
+                <div class="tagline">👥 Atlanta Style Community</div>
+            </header>
+
+            <div class="gallery-section">
+                <h2>ATL Style Gallery</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 20px;">See how Atlanta is styling and share your looks</p>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=250&h=200&fit=crop" alt="Streetwear Style">
+                        <div class="gallery-item-info">
+                            <span class="gallery-item-zone">Little 5 Points</span>
+                            <span class="gallery-item-rating">9.2/10</span>
+                            <p style="margin-top: 10px; color: #666; font-size: 0.9em;">🔥 Streetwear perfection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1485231183945-fffde7cb32f1?w=250&h=200&fit=crop" alt="Business Casual">
+                        <div class="gallery-item-info">
+                            <span class="gallery-item-zone">Buckhead</span>
+                            <span class="gallery-item-rating">8.7/10</span>
+                            <p style="margin-top: 10px; color: #666; font-size: 0.9em;">💼 Elevated business casual</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=250&h=200&fit=crop" alt="Casual Style">
+                        <div class="gallery-item-info">
+                            <span class="gallery-item-zone">Midtown</span>
+                            <span class="gallery-item-rating">8.9/10</span>
+                            <p style="margin-top: 10px; color: #666; font-size: 0.9em;">👌 Perfect casual vibe</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=250&h=200&fit=crop" alt="Night Out">
+                        <div class="gallery-item-info">
+                            <span class="gallery-item-zone">East Atlanta</span>
+                            <span class="gallery-item-rating">9.1/10</span>
+                            <p style="margin-top: 10px; color: #666; font-size: 0.9em;">🌙 Night out ready</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="cta-section">
-                <h2>Want More?</h2>
-                <p>Submit your kicks to the gallery and unlock exclusive Atlanta style tips</p>
-                <button class="cta-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeMaG3f646Sz4Wex0OuuyirYUWLp26g3kVqJJ8RqGGvSKwTvw/viewform?usp=sharing&ouid=113289623202042753356', '_blank')">Submit to Gallery</button>
-                <button class="cta-btn" style="margin-left: 10px;" onclick="unlockPremium()">Unlock Premium</button>
-  
+                <h2>Share Your Atlanta Style</h2>
+                <p>Submit your looks to be featured in our community gallery</p>
+                <button class="cta-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeMaG3f646Sz4Wex0OuuyirYUWLp26g3kVqJJ8RqGGvSKwTvw/viewform?usp=sharing&ouid=113289623202042753356', '_blank')">Submit Your Look</button>
+            </div>
+        </div>
+
+        <!-- COACHING VIEW -->
+        <div id="coachingView" class="category-detail">
+            <header>
+                <div class="logo">ATL-KICK-SCOUT</div>
+                <div class="tagline">🎯 1-on-1 Style Coaching</div>
+            </header>
+
+            <div class="premium-content">
+                <h2>Personal Style Coaching Sessions</h2>
+                
+                <div class="gem-category">
+                    <h3>👔 Personal Style Assessment</h3>
+                    <p>60-minute session analyzing your current wardrobe and style goals</p>
+                    <p><strong>Includes:</strong> Body type analysis, color theory, and personalized style roadmap</p>
+                </div>
+
+                <div class="gem-category">
+                    <h3>🛍️ Personal Shopping Session</h3>
+                    <p>3-hour guided shopping experience at Atlanta's best stores</p>
+                    <p><strong>Includes:</strong> Pre-shopping consultation and post-shopping outfit planning</p>
+                </div>
+
+                <div class="gem-category">
+                    <h3>🧳 Travel & Event Styling</h3>
+                    <p>Complete outfit planning for trips, weddings, or special events</p>
+                    <p><strong>Includes:</strong> Packing lists and accessory recommendations</p>
+                </div>
+
+                <div class="cta-section">
+                    <h3>Ready to Transform Your Style?</h3>
+                    <button class="cta-btn" onclick="startCoachingBooking()">Book Coaching Session</button>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Unlock Premium Coaching</h2>
+                <p>Get access to Atlanta's top style experts and personalized sessions</p>
+                <button class="cta-btn" onclick="unlockPremium()">Upgrade to Premium - $4.99/mo</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File upload and preview functionality
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            handleFileUpload(e, 'imagePreview', 'submitBtn');
+        });
+
+        document.getElementById('styleFileInput').addEventListener('change', function(e) {
+            handleFileUpload(e, 'styleImagePreview', 'styleSubmitBtn');
+        });
+
+        function handleFileUpload(event, previewId, submitBtnId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById(previewId);
+                    preview.src = e.target.result;
+                    preview.classList.add('show');
+                    
+                    document.getElementById(submitBtnId).disabled = false;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Drag and drop functionality
+        const uploadAreas = document.querySelectorAll('.upload-area');
+        
+        uploadAreas.forEach(area => {
+            area.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('drag-over');
+            });
+            
+            area.addEventListener('dragleave', function() {
+                this.classList.remove('drag-over');
+            });
+            
+            area.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('drag-over');
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    const fileInput = this.id === 'uploadArea' ? 
+                        document.getElementById('fileInput') : 
+                        document.getElementById('styleFileInput');
+                    
+                    fileInput.files = files;
+                    
+                    // Trigger change event
+                    const event = new Event('change');
+                    fileInput.dispatchEvent(event);
+                }
+            });
+        });
+
+        // Rating functions
+        function rateShoes() {
+            const zone = document.getElementById('neighborhood').value;
+            const sneakerName = document.getElementById('sneakerName').value.toLowerCase();
+            
+            // Enhanced rating algorithm
+            let baseRating = Math.random() * 4 + 6; // 6-10 base
+            let zoneMultiplier = getZoneMultiplier(zone);
+            let rarityBonus = getRarityBonus(sneakerName);
+            
+            const finalRating = Math.min(10, (baseRating * zoneMultiplier + rarityBonus)).toFixed(1);
+            displayRating(finalRating, zone);
+        }
+
+        function getZoneMultiplier(zone) {
+            const multipliers = {
+                'zone1': 1.2, // Bankhead - streetwear bonus
+                'zone2': 1.1, // Midtown - fashion forward
+                'zone3': 1.0, // Buckhead - classic
+                'zone4': 1.05, // Decatur - eclectic
+                'zone5': 1.15  // Hapeville - urban
+            };
+            return multipliers[zone] || 1.0;
+        }
+
+        function getRarityBonus(sneakerName) {
+            if (sneakerName.includes('jordan') || sneakerName.includes('dunk')) return 0.3;
+            if (sneakerName.includes('yeezy') || sneakerName.includes('off-white')) return 0.5;
+            return 0;
+        }
+
+        function displayRating(rating, zone) {
+            document.getElementById('ratingDisplay').textContent = `${rating}/10`;
+            
+            const feedbacks = {
+                '9-10': '🔥 Absolute fire! These kicks are ATL royalty',
+                '8-9': '💯 Clean kicks! Atlanta ready for sure',
+                '7-8': '👍 Solid pair - with the right fit these could be iconic',
+                '6-7': '🔄 Good base - let us help you level up your sneaker game'
+            };
+            
+            let feedback = feedbacks['6-7'];
+            if (rating >= 9) feedback = feedbacks['9-10'];
+            else if (rating >= 8) feedback = feedbacks['8-9'];
+            else if (rating >= 7) feedback = feedbacks['7-8'];
+            
+            document.getElementById('feedbackText').textContent = feedback;
+            document.getElementById('resultSection').classList.add('show');
+            
+            // Scroll to results
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function rateStyle() {
+            const styleCategory = document.getElementById('styleCategory').value;
+            const neighborhood = document.getElementById('styleNeighborhood').value;
+            
+            // More sophisticated rating algorithm for full outfits
+            const baseRating = Math.random() * 3 + 7; // 7-10 base for style
+            const categoryBonus = getStyleCategoryBonus(styleCategory);
+            const neighborhoodBonus = getNeighborhoodStyleBonus(neighborhood);
+            
+            const finalRating = Math.min(10, (baseRating + categoryBonus + neighborhoodBonus)).toFixed(1);
+            
+            displayStyleRating(finalRating, styleCategory, neighborhood);
+        }
+
+        function getStyleCategoryBonus(category) {
+            const bonuses = {
+                'streetwear': 0.8,
+                'casual': 0.5,
+                'business': 0.6,
+                'nightlife': 0.9,
+                'creative': 1.0
+            };
+            return bonuses[category] || 0;
+        }
+
+        function getNeighborhoodStyleBonus(neighborhood) {
+            const bonuses = {
+                'bankhead': 0.7,
+                'midtown': 0.8,
+                'buckhead': 0.6,
+                'eav': 0.9,
+                'little5': 1.0
+            };
+            return bonuses[neighborhood] || 0;
+        }
+
+        function displayStyleRating(rating, category, neighborhood) {
+            document.getElementById('styleRatingDisplay').textContent = `${rating}/10`;
+            
+            const feedbacks = {
+                '9-10': '🔥 Absolute fire! You\'re setting trends in ATL',
+                '8-9': '💯 Clean fit! Atlanta ready for sure',
+                '7-8': '👍 Solid style - with a few tweaks you could be iconic',
+                '6-7': '🔄 Good base - let us help you elevate it'
+            };
+            
+            let feedback = feedbacks['6-7'];
+            if (rating >= 9) feedback = feedbacks['9-10'];
+            else if (rating >= 8) feedback = feedbacks['8-9'];
+            else if (rating >= 7) feedback = feedbacks['7-8'];
+            
+            document.getElementById('styleFeedbackText').textContent = feedback;
+            
+            // Add breakdown details
+            const breakdown = document.getElementById('breakdownDetails');
+            breakdown.innerHTML = `
+                <div class="breakdown-item">
+                    <span>Style Category:</span>
+                    <span>${getCategoryName(category)}</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Neighborhood Vibe:</span>
+                    <span>${getNeighborhoodName(neighborhood)}</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Overall Fit:</span>
+                    <span>${rating}/10</span>
+                </div>
+            `;
+            
+            document.getElementById('styleResultSection').classList.add('show');
+            
+            // Scroll to results
+            document.getElementById('styleResultSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                'streetwear': 'Streetwear 🔥',
+                'casual': 'Casual Everyday',
+                'business': 'Business Casual',
+                'nightlife': 'Night Out',
+                'creative': 'Creative/Artsy'
+            };
+            return names[category] || 'Unknown';
+        }
+
+        function getNeighborhoodName(neighborhood) {
+            const names = {
+                'bankhead': 'Bankhead - Urban',
+                'midtown': 'Midtown - Trendy',
+                'buckhead': 'Buckhead - Upscale',
+                'eav': 'East Atlanta - Alternative',
+                'little5': 'Little 5 Points - Eclectic'
+            };
+            return names[neighborhood] || 'Unknown';
+        }
+
+        // Form reset functions
+        function resetForm() {
+            document.getElementById('fileInput').value = '';
+            document.getElementById('imagePreview').classList.remove('show');
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('neighborhood').selectedIndex = 0;
+            document.getElementById('sneakerName').value = '';
+            document.getElementById('resultSection').classList.remove('show');
+        }
+
+        function resetStyleForm() {
+            document.getElementById('styleFileInput').value = '';
+            document.getElementById('styleImagePreview').classList.remove('show');
+            document.getElementById('styleSubmitBtn').disabled = true;
+            document.getElementById('styleCategory').selectedIndex = 0;
+            document.getElementById('styleNeighborhood').selectedIndex = 0;
+            document.getElementById('styleResultSection').classList.remove('show');
+        }
+
+        // Sharing functions
+        function shareToIG(event) {
+            event.preventDefault();
+            const rating = document.getElementById('ratingDisplay').textContent;
+            const zone = document.getElementById('neighborhood').options[document.getElementById('neighborhood').selectedIndex].text;
+            
+            const message = `My kicks just scored ${rating} in ${zone}! 💯\n\nRated by @ATL-KICK-SCOUT\n\n#ATLKickScout #AtlantaSneakers #ATLSneakerhead #${zone.replace(' ', '')}Vibes #SneakerRating`;
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(message).then(() => {
+                alert('Rating copied! Paste it in your Instagram story or post 📱');
+            });
+        }
+
+        function shareStyleToIG(event) {
+            event.preventDefault();
+            const rating = document.getElementById('styleRatingDisplay').textContent;
+            const category = document.getElementById('styleCategory').options[document.getElementById('styleCategory').selectedIndex].text;
+            
+            const message = `My ATL style just scored ${rating}! 🎯\n\nRated by @ATL-KICK-SCOUT\n\n#ATLKickScout #AtlantaStyle #ATLFashion #StyleRating`;
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(message).then(() => {
+                alert('Style rating copied! Paste it in your Instagram story or post 📱');
+            });
+        }
+
+        // Navigation functions
+        function openCategory(category) {
+            // Hide all views
+            document.querySelectorAll('.category-detail').forEach(view => {
+                view.classList.remove('active');
+            });
+            document.getElementById('homeView').style.display = 'none';
+            
+            // Show selected view
+            document.getElementById(category + 'View').classList.add('active');
+            document.getElementById('backBtn').style.display = 'block';
+            
+            // Track category views
+            gtag('event', 'view_category', { category: category });
+        }
+
+        function goBack() {
+            // Hide all detail views
+            document.querySelectorAll('.category-detail').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Show home view
+            document.getElementById('homeView').style.display = 'block';
+            document.getElementById('backBtn').style.display = 'none';
+        }
+
+        // Premium functionality
+        function unlockPremium() {
+            // Unlock all premium content
+            document.querySelectorAll('.premium-content').forEach(content => {
+                content.classList.add('unlocked');
+            });
+            
+            // Hide upsell sections
+            const upsellSections = document.querySelectorAll('.cta-section');
+            upsellSections.forEach(section => {
+                if (section.id.includes('Upsell') || section.querySelector('button').textContent.includes('Upgrade')) {
+                    section.style.display = 'none';
+                }
+            });
+            
+            // Show success message
+            alert('Welcome to ATL-KICK-SCOUT Premium! 🎉 You now have full access to our style concierge services.');
+            
+            // Track conversion
+            gtag('event', 'premium_signup');
+        }
+
+        function startConciergeBooking() {
+            alert('Redirecting to concierge booking... (This would connect to your booking system)');
+            // In a real implementation, this would open a booking modal or redirect
+        }
+
+        function startCoachingBooking() {
+            alert('Redirecting to coaching session booking... (This would connect to your booking system)');
+            // In a real implementation, this would open a booking modal or redirect
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up any initial state
+            console.log('ATL-KICK-SCOUT loaded successfully!');
+        });
+    </script>
+</body>
+</html>
