@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATL-KICK-SCOUT - Rate Your Atlanta Kicks 1-10</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R6EGQPLGVL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R6EGQPLGVL');
+    </script>
+    <link rel="icon" type="image/x-icon" href="/Atl-Kick-Scout/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1e3a5f 0%, #0d1b2a 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 3em;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            opacity: 0.95;
+            margin-bottom: 8px;
+        }
+
+        .sub-tagline {
+            font-size: 0.9em;
+            opacity: 0.85;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            color: #1e3a5f;
+            border: 2px solid #d4af37;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            z-index: 1000;
+            display: none;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .premium-banner {
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+            color: #1e3a5f;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .premium-banner:hover {
+            transform: scale(1.02);
+        }
+
+        .premium-banner h3 {
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+
+        .premium-banner p {
+            font-size: 0.9em;
+            opacity: 0.95;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .category-icon {
+            font-size: 2.5em;
+            margin-bottom: 12px;
+        }
+
+        .category-card h2 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.4em;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .premium-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #1e3a5f;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .category-detail {
+            display: none;
+        }
+
+        .category-detail.active {
+            display: block;
+        }
+
+        .upload-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .upload-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .upload-area {
+            border: 3px dashed #d4af37;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .upload-area:hover {
+            background: #f5f7fa;
+            border-color: #1e3a5f;
+        }
+
+        .upload-area.drag-over {
+            background: #fff8e1;
+            border-color: #d4af37;
+        }
+
+        .upload-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 12px;
+            margin: 20px auto;
+            display: none;
+        }
+
+        .image-preview.show {
+            display: block;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 25px auto;
+            padding: 15px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #1e3a5f;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-align: center;
+            display: none;
+        }
+
+        .result-section.show {
+            display: block;
+        }
+
+        .rating-display {
+            font-size: 4em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .feedback-text {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .share-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #1e3a5f;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .share-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .gallery-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .gallery-item-info {
+            padding: 15px;
+        }
+
+        .gallery-item-zone {
+            display: inline-block;
+            background: #1e3a5f;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .gallery-item-rating {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #1e3a5f;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-weight: 700;
+            margin-left: 5px;
+        }
+
+        .premium-content {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            display: none;
+        }
+
+        .premium-content.unlocked {
+            display: block;
+        }
+
+        .premium-content h2 {
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8em;
+        }
+
+        .gem-category {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(244, 208, 63, 0.05) 100%);
+            border-radius: 12px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .gem-category h3 {
+            color: #1e3a5f;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+        }
+
+        .gem-category p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .gem-category p:last-child {
+            margin-top: 10px;
+            font-style: italic;
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+        }
+
+        .cta-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .cta-section p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.05em;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #1e3a5f;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.2em;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-btn" id="backBtn" onclick="goBack()">← Back</button>
+
+    <div class="container">
+        <!-- HOME VIEW -->
+        <div id="homeView">
+            <header>
+                <div class="logo">ATL-KICK-SCOUT</div>
+                <div class="tagline">Your Personal Atlanta Style & Lifestyle Guide</div>
+                <div class="sub-tagline">Discover the 404's hidden gems - from fresh kicks to top cuts 🍑</div>
+            </header>
+
+            <div class="premium-banner" onclick="unlockPremium()">
+                <h3>🔓 Unlock Premium - $4.99/mo</h3>
+                <p>Get exclusive access to hidden shops, barber insider tips, restaurant guides & personalized style coaching</p>
+            </div>
+
+            <div class="categories">
+                <div class="category-card" onclick="openCategory('kicks')">
+                    <div class="category-icon">👟</div>
+                    <h2>Kicks</h2>
+                    <p>Rate and discover the freshest sneakers across Atlanta's zones. From Bankhead to Buckhead.</p>
+                </div>
+
+                <div class="category-card" onclick="openCategory('premium')">
+                    <div class="category-icon">💎</div>
+                    <h2>Hidden Gems<span class="premium-badge">PREMIUM</span></h2>
+                    <p>Exclusive access to Atlanta's best sneaker shops, thrift stores, barbers, and style tips.</p>
+                </div>
+
+                <div class="category-card" onclick="alert('Coming soon! Unlock Premium for early access.')">
+                    <div class="category-icon">👔</div>
+                    <h2>Fits<span class="premium-badge">COMING SOON</span></h2>
+                    <p>Share your complete outfit. Get style ratings and personalized fashion feedback.</p>
+                </div>
+
+                <div class="category-card" onclick="alert('Coming soon! Unlock Premium for early access.')">
+                    <div class="category-icon">✂️</div>
+                    <h2>Cuts<span class="premium-badge">COMING SOON</span></h2>
+                    <p>Find Atlanta's best barbers with real community reviews and insider tips.</p>
+                </div>
+
+                <div class="category-card" onclick="alert('Coming soon! Unlock Premium for early access.')">
+                    <div class="category-icon">🍽️</div>
+                    <h2>Eats<span class="premium-badge">COMING SOON</span></h2>
+                    <p>Must-try restaurants, food trucks, and hidden culinary gems across the 404.</p>
+                </div>
+
+                <div class="category-card" onclick="alert('Coming soon! Unlock Premium for early access.')">
+                    <div class="category-icon">🛍️</div>
+                    <h2>Spots<span class="premium-badge">COMING SOON</span></h2>
+                    <p>Hidden boutiques, thrift stores, and shopping destinations only locals know.</p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Ready to Scout the 404?</h2>
+                <p>Join Scout404 Premium for full access to Atlanta's best-kept style and lifestyle secrets</p>
+                <button class="cta-btn" onclick="unlockPremium()">Unlock Premium - $4.99/mo</button>
+            </div>
+
+            <footer>
+                <p>ATL-KICK-SCOUT - Scouting Atlanta's Best Since 2024</p>
+                <p style="margin-top: 10px;">Built for ATL sneakerheads | <a href="https://instagram.com/mrcoppafield">@mrcoppafield</a> | © 2025</p>
+            </footer>
+        </div>
+
+        <!-- KICKS DETAIL VIEW -->
+        <div id="kicksView" class="category-detail">
+            <header>
+                <div class="logo">ATL-KICK-SCOUT</div>
+                <div class="tagline">👟 Rate Your Atlanta Kicks</div>
+            </header>
+
+            <div class="upload-section">
+                <h2>Upload Your Kicks & Get Rated</h2>
+                
+                <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-icon">📸</div>
+                    <h3>Click or drag to upload</h3>
+                    <p style="color: #666; margin-top: 10px;">Snap your shoes and see how they rate in the 404</p>
+                </div>
+                
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                
+                <img id="imagePreview" class="image-preview" alt="Preview">
+
+                <div class="input-group">
+                    <label>Select Your ATL Zone</label>
+                    <select id="neighborhood">
+                        <option value="">Choose your zone...</option>
+                        <option value="zone1">Zone 1 - Bankhead</option>
+                        <option value="zone2">Zone 2 - Midtown</option>
+                        <option value="zone3">Zone 3 - Buckhead</option>
+                        <option value="zone4">Zone 4 - Decatur</option>
+                        <option value="zone5">Zone 5 - Hapeville</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Sneaker Name (Optional)</label>
+                    <input type="text" id="sneakerName" placeholder="e.g., Air Jordan 1 Retro High">
+                </div>
+
+                <button class="submit-btn" id="submitBtn" disabled onclick="rateShoes()">Scout My Kicks! 🔍</button>
+            </div>
+
+            <div class="result-section" id="resultSection">
+                <div class="rating-display" id="ratingDisplay"></div>
+                <div class="feedback-text" id="feedbackText"></div>
+                <a href="#" class="share-btn" id="shareBtn" onclick="shareToIG(event)">Share to Instagram</a>
+                <button class="submit-btn" style="margin-top: 20px;" onclick="resetForm()">Rate Another Pair</button>
+            </div>
+
+            <div class="gallery-section">
+                <h2>Community Gallery</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 20px;">See what Atlanta is wearing</p>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/250x200/1e3a5f/d4af37?text=Sample+Kicks" alt="Sample Kicks">
+                        <div class="gallery-item-info">
+                            <span class="gallery-item-zone">Zone 1</span>
+                            <span class="gallery-item-rating">8/10</span>
+                            <p style="margin-top: 10px; color: #666; font-size: 0.9em;">Coming soon: Submit your kicks via Google Form</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Want More?</h2>
+                <p>Submit your kicks to the gallery and unlock exclusive Atlanta style tips</p>
+                <button class="cta-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeMaG3f646Sz4Wex0OuuyirYUWLp26g3kVqJJ8RqGGvSKwTvw/viewform?usp=sharing&ouid=113289623202042753356', '_blank')">Submit to Gallery</button>
+                <button class="cta-btn" style="margin-left: 10px;" onclick="unlockPremium()">Unlock Premium</button>
+  
